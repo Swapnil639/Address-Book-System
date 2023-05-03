@@ -14,6 +14,7 @@ public class AddressBookSystem {
         searchPersonInMultiplyAddressBook();
         System.out.println(addressBookMap);
     }
+
     private static void multiplyAddressBook() {
         System.out.println("how many Address Book are creating");
         int numberOfAddressBook = scanner.nextInt();
@@ -27,14 +28,15 @@ public class AddressBookSystem {
             addressBookMap.put(addressBookName, addressBook);
         }
     }
+
     private static void searchPersonInMultiplyAddressBook() {
         System.out.println("Enter the Name of address Book");
-        String bookName =scanner.next();
+        String bookName = scanner.next();
         AddressBook address = addressBookMap.get(bookName);
         AddressBook addressBook = new AddressBook();
-        if (address == null){
+        if (address == null) {
             System.out.println("No book found in address");
-        }else {
+        } else {
             addressBook.searchContact();
         }
     }
