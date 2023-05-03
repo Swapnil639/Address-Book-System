@@ -26,7 +26,7 @@ public class AddressBook {
 
     public void editDeleteContact() {
         boolean condition = true;
-        while (condition == true) {
+        while (condition) {
             System.out.println("Choose the Number if you have edit or delete the contact \n1. Edit \n2. Delete \n3. Show the Contacts lists \n4. Exit");
             int option = scanner.nextInt();
             switch (option) {
@@ -181,5 +181,17 @@ public class AddressBook {
         }
         System.out.println(contactArrayList);
         System.out.println("successfully Delete the contact");
+    }
+
+    public void searchContact() {
+        System.out.println("Enter the name of city or state");
+        String cityOrState = scanner.next();
+        for (Contact contact : contactArrayList) {
+            if (contact.getCity().equals(cityOrState) && contact.getState().equals(cityOrState)) {
+                System.out.println(contact);
+            } else {
+                System.out.println("Not found in the address book");
+            }
+        }
     }
 }

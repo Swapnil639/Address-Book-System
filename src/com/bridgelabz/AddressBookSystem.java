@@ -11,6 +11,7 @@ public class AddressBookSystem {
     public static void main(String[] args) {
         System.out.println("Welcome To Address Book");
         multiplyAddressBook();
+        searchPersonInMultiplyAddressBook();
         System.out.println(addressBookMap);
     }
     private static void multiplyAddressBook() {
@@ -24,6 +25,17 @@ public class AddressBookSystem {
             addressBook.multiplyContact();
             addressBook.editDeleteContact();
             addressBookMap.put(addressBookName, addressBook);
+        }
+    }
+    private static void searchPersonInMultiplyAddressBook() {
+        System.out.println("Enter the Name of address Book");
+        String bookName =scanner.next();
+        AddressBook address = addressBookMap.get(bookName);
+        AddressBook addressBook = new AddressBook();
+        if (address == null){
+            System.out.println("No book found in address");
+        }else {
+            addressBook.searchContact();
         }
     }
 }
