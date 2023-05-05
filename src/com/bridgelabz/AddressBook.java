@@ -2,6 +2,8 @@ package com.bridgelabz;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 public class AddressBook {
     public static Scanner scanner = new Scanner(System.in);
@@ -185,13 +187,26 @@ public class AddressBook {
 
     public void searchContact() {
         System.out.println("Enter the name of city or state");
-        String cityOrState = scanner.next();
+        String input = scanner.next();
         for (Contact contact : contactArrayList) {
-            if (contact.getCity().equals(cityOrState) && contact.getState().equals(cityOrState)) {
+            if (contact.getCity().equals(input) && contact.getState().equals(input)) {
                 System.out.println(contact);
             } else {
                 System.out.println("Not found in the address book");
             }
         }
+    }
+    public void countCityOrPerson() {
+        System.out.println("Enter the name of City or State");
+        String input = scanner.next();
+        AtomicInteger count = new AtomicInteger(0);
+        Stream<Contact> stream = contactArrayList.stream();
+        stream.forEach(i->
+                {
+                    if (i.getCity().equals(input)&& i.getState().equals(input)){
+                        count.getAndIncrement();
+                    }
+                }
+        );
     }
 }

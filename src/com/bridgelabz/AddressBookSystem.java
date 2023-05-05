@@ -1,8 +1,6 @@
 package com.bridgelabz;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class AddressBookSystem {
     public static Scanner scanner = new Scanner(System.in);
@@ -13,6 +11,7 @@ public class AddressBookSystem {
         multiplyAddressBook();
         searchPersonInMultiplyAddressBook();
         System.out.println(addressBookMap);
+        countCityOfPerson();
     }
 
     private static void multiplyAddressBook() {
@@ -38,6 +37,17 @@ public class AddressBookSystem {
             System.out.println("No book found in address");
         } else {
             addressBook.searchContact();
+        }
+    }
+    private static void countCityOfPerson() {
+        System.out.println("Enter the name of Addresses book");
+        String input = scanner.next();
+        AddressBook addressBook = new AddressBook();
+        AddressBook address = addressBookMap.get(input);
+        if (address == null){
+            System.out.println("No book is found in address book");
+        }else {
+            addressBook.countCityOrPerson();
         }
     }
 }
