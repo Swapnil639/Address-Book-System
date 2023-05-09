@@ -3,51 +3,160 @@ package com.bridgelabz;
 import java.util.*;
 
 public class AddressBookSystem {
-    public static Scanner scanner = new Scanner(System.in);
-    public static Map<String, AddressBook> addressBookMap = new HashMap<>();
+    static Map<String, AddressBook> bookClassMap = new HashMap<>();
+    static Scanner scanner = new Scanner(System.in);
+    static AddressBook addressBook = new AddressBook();
 
     public static void main(String[] args) {
-        System.out.println("Welcome To Address Book");
-        multiplyAddressBook();
-        searchPersonInMultiplyAddressBook();
-        System.out.println(addressBookMap);
-        countCityOfPerson();
-    }
 
-    private static void multiplyAddressBook() {
-        System.out.println("how many Address Book are creating");
-        int numberOfAddressBook = scanner.nextInt();
-        for (int i = 1; i <= numberOfAddressBook; i++) {
-            System.out.println("Enter " + i + " the Address Book Name");
-            String addressBookName = scanner.next();
-            AddressBook addressBook = new AddressBook();
-            addressBook.setAddressBookName(addressBookName);
-            addressBook.multiplyContact();
-            addressBook.editDeleteContact();
-            addressBookMap.put(addressBookName, addressBook);
+        System.out.println("Welcome To AddressBook program");
+        boolean condition = true;
+        while (condition) {
+            System.out.println("choose options \n1 : AddNewAddressBook\n2 : AddContact\n3 : EditContact\n4 : Delete Contact\n5 : Add multiple contacts\n6 : ShowContacts \n7 : MoreOptions \n8 : Exit");
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    addAddressBook();
+                    break;
+                case 2:
+                    addAddressBookContact();
+                    break;
+                case 3:
+                    editAddressBookContact();
+                    break;
+                case 4:
+                    deleteAddressBookContact();
+                    break;
+                case 5:
+                    addMultipleContactsToAddressBook();
+                    break;
+                case 6:
+                    showContactsInAddressBook();
+                    break;
+                case 7:
+                    moreOptions();
+                    break;
+                case 8:
+                    condition = false;
+                    System.out.println("Exiting the loop ");
+                    break;
+                default:
+                    System.out.println("Enter the correct number");
+            }
         }
     }
 
-    private static void searchPersonInMultiplyAddressBook() {
-        System.out.println("Enter the Name of address Book");
+    public static void moreOptions() {
+        boolean condition = true;
+        while (condition) {
+            System.out.println("Choose the options\n1.SearchContactByCity\n2.SortingByPersonName\n3.SortingByCity\n4.Exit ");
+            int option = scanner.nextInt();
+            switch (option) {
+                case 1:
+                    searchByCityOrState();
+                    break;
+                case 2:
+                    sortingByPersonName();
+                    break;
+                case 3:
+                    condition = false;
+                    System.out.println("Back To Main menu");
+                    break;
+                default:
+                    System.out.println("Enter the correct option");
+            }
+        }
+    }
+
+    public static void addAddressBook() {
+        System.out.println("Create a New Address Book\nEnter the New AddressBook name");
         String bookName = scanner.next();
-        AddressBook address = addressBookMap.get(bookName);
-        AddressBook addressBook = new AddressBook();
-        if (address == null) {
-            System.out.println("No book found in address");
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            bookClassMap.put(bookName, addressBook);
+            System.out.println(bookClassMap.entrySet());
+            System.out.println("SuccessFully added New AddressBook");
         } else {
-            addressBook.searchContact();
+            System.out.println("AddressBook with this name already exists ");
         }
     }
-    private static void countCityOfPerson() {
-        System.out.println("Enter the name of Addresses book");
-        String input = scanner.next();
-        AddressBook addressBook = new AddressBook();
-        AddressBook address = addressBookMap.get(input);
-        if (address == null){
-            System.out.println("No book is found in address book");
-        }else {
-            addressBook.countCityOrPerson();
+
+    public static void addAddressBookContact() {
+        System.out.println("Enter the AddressBook Name");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No Book found with these name");
+        } else {
+            addressBook.addContact();
         }
     }
+
+    public static void editAddressBookContact() {
+        System.out.println("Enter the AddressBook Name");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No Book found with these name");
+        } else {
+            addressBook.editContacts();
+        }
+    }
+
+    public static void deleteAddressBookContact() {
+        System.out.println("Enter the AddressBook Name");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No Book found with these name");
+        } else {
+            addressBook.deleteContact();
+        }
+    }
+
+    public static void addMultipleContactsToAddressBook() {
+        System.out.println("Enter the AddressBook Name");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No Book found with these name");
+        } else {
+            addressBook.addMultipleContacts();
+        }
+    }
+
+    public static void showContactsInAddressBook() {
+        System.out.println("Enter the AddressBookName ");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No book found with these name");
+        } else {
+            addressBook.showContacts();
+        }
+    }
+
+    // ability to view
+    public static void searchByCityOrState() {
+        System.out.println("Enter the AddressBookName ");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No book found with these name");
+        } else {
+            addressBook.searchCityOrState();
+        }
+    }
+
+    public static void sortingByPersonName() {
+        System.out.println("Enter the AddressBookName ");
+        String bookName = scanner.next();
+        AddressBook book = bookClassMap.get(bookName);
+        if (book == null) {
+            System.out.println("No book found with these name");
+        } else {
+            addressBook.sortingByPersonName();
+        }
+    }
+
 }
