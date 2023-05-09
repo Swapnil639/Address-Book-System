@@ -6,23 +6,22 @@ public class Contact {
     private String address;
     private String city;
     private String state;
-    private String emailId;
     private int zip;
     private long phoneNumber;
+    private String email;
 
-    public Contact(String firstName, String lastName, String address, String city, String state, String emailId, int zip, long phoneNumber) {
+    public Contact() {
+    }
+
+    public Contact(String firstName, String lastName, String address, String city, String state, int zip, long phoneNumber, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
         this.city = city;
         this.state = state;
-        this.emailId = emailId;
         this.zip = zip;
         this.phoneNumber = phoneNumber;
-    }
-
-    public Contact(){
-
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -65,14 +64,6 @@ public class Contact {
         this.state = state;
     }
 
-    public String getEmailId() {
-        return emailId;
-    }
-
-    public void setEmailId(String emailId) {
-        this.emailId = emailId;
-    }
-
     public int getZip() {
         return zip;
     }
@@ -89,6 +80,14 @@ public class Contact {
         this.phoneNumber = phoneNumber;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
@@ -97,9 +96,9 @@ public class Contact {
                 ", address='" + address + '\'' +
                 ", city='" + city + '\'' +
                 ", state='" + state + '\'' +
-                ", emailId='" + emailId + '\'' +
                 ", zip=" + zip +
                 ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
                 '}';
     }
 }
