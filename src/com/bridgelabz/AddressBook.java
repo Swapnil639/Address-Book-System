@@ -178,4 +178,11 @@ public class AddressBook {
             contactList.stream().sorted(Comparator.comparing(Contact::getFirstName)).forEach(System.out::println);
         }
     }
+    public void sortingByCity() {
+        if (contactList.isEmpty()) {
+            System.out.println("Contact book is empty");
+        } else {
+            contactList.stream().sorted(Comparator.comparing(Contact::getCity)).forEach(System.out::println);
+        }
+    }
 }
